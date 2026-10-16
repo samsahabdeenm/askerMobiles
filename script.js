@@ -34,30 +34,4 @@ document.addEventListener("DOMContentLoaded", () => {
   const year = document.getElementById("current-year");
   if (year) year.textContent = new Date().getFullYear();
 
-  const form = document.getElementById("enquiry-form");
-  if (form) {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      if (!form.reportValidity()) return;
-      const data = new FormData(form);
-      const name = String(data.get("name") || "").trim();
-      const phone = String(data.get("phone") || "").trim();
-      const property = String(data.get("property") || "").trim();
-      const location = String(data.get("location") || "").trim();
-      const message = String(data.get("message") || "").trim();
-
-      const lines = [
-        "Vanakkam Asker Land Promoters,",
-        "",
-        "I would like to enquire about a property.",
-        "Name: " + name,
-        "Phone: " + phone,
-        "Interested in: " + property,
-        "Preferred location: " + (location || "Not specified"),
-        "Additional details: " + (message || "Not specified")
-      ];
-      const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(lines.join("\n"));
-      window.open(url, "_blank", "noopener,noreferrer");
-    });
-  }
 });
